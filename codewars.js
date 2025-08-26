@@ -215,7 +215,7 @@ function twoSum(numbers, target) {
 }
  */
 
-function vowelIndices(word) {
+/* function vowelIndices(word) {
   return [...word].reduce(
     (acc, val, i) => (/[aeiouy]/i.test(val) ? acc.concat(i + 1) : acc),
     []
@@ -228,4 +228,270 @@ function dataReverse(data) {
     groupArr.push(data.slice(i, i + 8));
   }
   return groupArr.reverse().flat();
+} */
+/* 
+const combinations = [];
+let best_sum = 0;
+
+array = [50];
+t = 163;
+k = 3;
+
+function generateCombinations(arr, size, start, temp) {
+  if (temp.length === size) {
+    combinations.push([...temp]);
+    return;
+  }
+  for (let i = start; i < arr.length; i++) {
+    temp.push(arr[i]);
+    generateCombinations(arr, size, i + 1, temp);
+    temp.pop();
+  }
+}
+
+function chooseBestSum(t, k, ls) {
+  generateCombinations(ls, k, 0, []);
+  for (let i of combinations) {
+    const accumulator = i.reduce((acc, val) => acc + val);
+    if (accumulator > best_sum && accumulator <= t) {
+      best_sum = accumulator;
+    }
+  }
+  return best_sum > 0 ? best_sum : null;
+}
+
+console.log(chooseBestSum(163, 3, array));
+ */
+
+/* function abbreviate(string) {
+  const array = string.match(/[a-zA-Z]+|[^a-zA-Z]+/g);
+  return array
+    ? array
+        .map((word) => {
+          return [...word].filter((el) => el.match(/[a-zA-Z]+/g)).length >= 4
+            ? word[0] + (word.length - 2).toString() + word.at(-1)
+            : word;
+        })
+        .join("")
+    : "";
+} */
+/* 
+function abbreviate(string) {
+  return string.replace(/[a-zA-Z]{4,}/g, word => word[0] + (word.length - 2) + word.at(-1));
+} */
+
+/* function service(score) {
+  const points = score.split(":");
+  const sum = Number(points[0]) + Number(points[1]);
+  if (sum === 0) return "first";
+  if (sum <= 40) {
+    return Math.floor(sum / 5) % 2 === 0 ? "first" : "second";
+  }
+  return sum % 4 === 0 || (sum - 1) % 4 === 0 ? "first" : "second";
+}
+ */
+
+/* function sortTheInnerContent(words) {
+  return words.replace(/(?<=\w)\w+(?=\w)/g, (word) =>
+    [...word].sort((a, b) => b.charCodeAt(0) - a.charCodeAt(0)).join("")
+  );
+}
+ */
+
+/* function maxProfit(prices) {
+  let bestProfit = prices.at(-1) - prices.at(-2);
+  let lowPrice = prices[0];
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] <= lowPrice) {
+      lowPrice = prices[i];
+      if (prices[i + 1] && prices[i + 1] - lowPrice > bestProfit)
+        bestProfit = prices[i + 1] - lowPrice;
+      continue;
+    }
+    if (prices[i] - lowPrice > bestProfit) bestProfit = prices[i] - lowPrice;
+  }
+  return bestProfit;
+}
+
+function maxProfit(prices) {
+  let minPrice = prices[0];
+  let maxProfit = -Infinity;
+  for (let i = 1; i < prices.length; i++) {
+    maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+    minPrice = Math.min(minPrice, prices[i]);
+  }
+  return maxProfit;
+}
+ */
+/*
+const hash = Object.freeze({
+  queen: 9,
+  rook: 5,
+  bishop: 3,
+  knight: 3,
+  pawn: 1,
+});
+
+function piecesValue(arr, s) {
+  let totalValue = 0;
+  for (let i = 0; i < arr.length; i++) {
+    totalValue += arr[i].reduce((acc, val) => {
+      const pieceVal = val[0] === s[0] ? hash[val.slice(2)] : 0;
+      return acc + pieceVal;
+    }, 0);
+  }
+  return totalValue;
+} */
+
+/* amount = 43;
+
+const makeChange = (amount) => {
+  const coins = ["H", "Q", "D", "N", "P"];
+  const values = [50, 25, 10, 5, 1];
+  const object = {};
+  for (let i = 0; i < values.length; i++) {
+    while (amount >= values[i]) {
+      if (amount === 0) break;
+      amount -= values[i];
+      object[coins[i]] ? (object[coins[i]] += 1) : (object[coins[i]] = 1);
+    }
+  }
+  return object;
+};
+console.log(makeChange(amount)); */
+
+/* class WordDictionary {
+  constructor() {
+    this.array = [];
+  }
+  addWord(word) {
+    this.array.push(word);
+  }
+
+  search(word) {
+    const regex = new RegExp("^" + word.replace(/\./g, "[a-z]") + "$");
+    return this.array.some((word) => regex.test(word));
+  }
+}
+
+const wd = new WordDictionary();
+wd.addWord("a");
+wd.addWord("at");
+wd.addWord("ate");
+wd.addWord("ear");
+console.log(wd.search("a"));
+console.log(wd.search("a."));
+console.log(wd.search("a.e"));
+console.log(wd.search("b"));
+console.log(wd.search("e."));
+console.log(wd.search("ea."));
+console.log(wd.search("ea.."));
+ */
+
+/* function matrixfy(str) {
+  if (str === "") return "name must be at least one letter";
+  const matrixSize = Math.floor(Math.sqrt(str.length));
+  let array = [];
+  for (let i = 0; i < matrixSize; i++) {
+    let element = array.slice(i, i + matrixSize);
+    while (element.length < matrixSize){
+      element.push(".");
+    }
+    array.push(element)
+  }
+  return array;
+} */
+/* function x(n) {
+  let mainArr = [];
+  for (let i = 0; i < n; i++) {
+    let arr = Array(n).fill(0);
+    arr[i] = 1;
+    arr[arr.length - (i + 1)] = 1;
+    mainArr.push(arr);
+  }
+  return mainArr;
+}
+ */
+
+/* function sc(apple) {
+  for (let i = 0; i < apple.length; i++) {
+    const bug = apple[i].findIndex((c) => c === "B");
+    if (bug !== -1) return [i, bug];
+  }
+} */
+/* 
+function roundRobin(jobs, slice, index) {
+  let counter = 0;
+  while (jobs[index] > 0) {
+    const recursive = () => {
+      for (let i = 0; i < jobs.length; i++) {
+        if (slice > jobs[i]) {
+          counter += jobs[i];
+          jobs[i] = 0;
+        } else {
+          counter += slice;
+          jobs[i] -= slice;
+        }
+        if (jobs[index] === 0) return;
+      }
+    };
+    recursive();
+  }
+  return counter;
+}
+console.log(roundRobin([10, 20], 5, 0));
+ */
+
+/* function sequenceClassifier(arr) {
+  let allEqual = true;
+  let strictlyIncreasing = true;
+  let strictlyDecreasing = true;
+  let nonDecreasing = true;
+  let nonIncreasing = true;
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] !== arr[0]) allEqual = false;
+    if (arr[i] <= arr[i - 1]) strictlyIncreasing = false;
+    if (arr[i] >= arr[i - 1]) strictlyDecreasing = false;
+    if (arr[i] < arr[i - 1]) nonDecreasing = false;
+    if (arr[i] > arr[i - 1]) nonIncreasing = false;
+  }
+
+  if (allEqual) return 5;
+  if (strictlyIncreasing) return 1;
+  if (strictlyDecreasing) return 3;
+  if (nonDecreasing) return 2;
+  if (nonIncreasing) return 4;
+  return 0;
+} */
+
+/* function reverseFizzBuzz(array) {
+  let f = 0;
+  let b = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (f !== 0 && b !== 0) break;
+    if (array[i] === "Fizz" && f === 0) {
+      f = i + 1;
+    }
+    if (array[i] === "Buzz" && b === 0) {
+      b = i + 1;
+    }
+    if (array[i] === "FizzBuzz") {
+      if (f === 0 && b === 0) {
+        f = i + 1;
+        b = f;
+      }
+      f !== 0 ? (b = i + 1) : (f = i + 1);
+    }
+  }
+  return [f, b];
+} */
+
+function leastLarger(a, i) {
+  return (
+    a
+      .map((el, id) => (el > a[i] ? id : -1))
+      .filter((id) => id !== -1)
+      .sort((b, c) => a[b] - a[c])[0] ?? -1
+  );
 }

@@ -487,7 +487,7 @@ console.log(roundRobin([10, 20], 5, 0));
   return [f, b];
 } */
 
-function leastLarger(a, i) {
+/* function leastLarger(a, i) {
   return (
     a
       .map((el, id) => (el > a[i] ? id : -1))
@@ -495,3 +495,110 @@ function leastLarger(a, i) {
       .sort((b, c) => a[b] - a[c])[0] ?? -1
   );
 }
+ */
+
+/* function window(length, offset, list) {
+  const result = [];
+  for (let i = 0; i < list.length; i += offset) {
+    result.push(list.slice(i, i + length));
+  }
+  return result;
+}
+ */
+
+/* function validateBase(num, base) {
+  const based = (char) => char.charCodeAt(0) - 54;
+  for (let i = 0; i < num.length; i++) {
+    if (/[A-Z]/.test(num[i])) {
+      if (based(num[i]) > base) return false;
+    }
+    if (num[i] >= base) return false;
+  }
+  return true;
+} */
+
+/* function format(text, width) {
+  const array = text.split(" ");
+  let lineLength = 0;
+  const formattedText = array.reduce((acc, val) => {
+    if (lineLength + val.length + (lineLength > 0 ? 1 : 0) <= width) {
+      acc += (lineLength > 0 ? " " : "") + val;
+      lineLength += val.length + (lineLength > 0 ? 1 : 0);
+    } else {
+      acc += "\n" + val;
+      lineLength = val.length;
+    }
+    return acc;
+  }, "");
+  return formattedText;
+} */
+
+/* function subsetSum(xs, target, index = 0) {
+  if (target === 0) return [];
+  if (index >= xs.length) return null;
+  const withCurrent = subsetSum(xs, target - xs[index], index + 1);
+  if (withCurrent !== null) {
+    return [xs[index], ...withCurrent];
+  }
+  return subsetSum(xs, target, index + 1);
+}
+
+function subsetSum(xs, target) {
+  const stack = [{ index: 0, total: target, path: [] }];
+  const visited = new Set();
+
+  while (stack.length > 0) {
+    const { index, total, path } = stack.pop();
+    const key = `${index}-${total}`;
+    if (visited.has(key)) continue;
+    visited.add(key);
+
+    if (total === 0) return path;
+    if (index >= xs.length || total < 0) continue;
+
+    // Prova includere xs[index]
+    stack.push({
+      index: index + 1,
+      total: total - xs[index],
+      path: [...path, xs[index]],
+    });
+
+    // Prova escludere xs[index]
+    stack.push({
+      index: index + 1,
+      total: total,
+      path: [...path],
+    });
+  }
+
+  return null;
+} */
+
+/* function subsetSum(xs, target) {
+  const stack = [{ index: 0, total: target, path: [] }];
+  const visited = new Set();
+
+  while (stack.length > 0) {
+    const { index, total, path } = stack.pop();
+    const key = `${index}-${total}`;
+    if (visited.has(key)) continue;
+    visited.add(key);
+
+    if (total === 0) return path;
+    if (index >= xs.length || total < 0) continue;
+
+    stack.push({
+      index: index + 1,
+      total: total - xs[index],
+      path: [...path, xs[index]],
+    });
+
+    stack.push({
+      index: index + 1,
+      total: total,
+      path: [...path],
+    });
+  }
+  return null;
+}
+ */

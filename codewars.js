@@ -602,3 +602,76 @@ function subsetSum(xs, target) {
   return null;
 }
  */
+/* 
+var searchInsert = function (nums, target) {
+  const found = nums.findIndex((num) => num === target);
+  if (found !== -1) return found;
+  const newIndex = nums.findIndex((num) => num > target);
+  return newIndex === -1 ? nums.length : newIndex;
+};
+
+function giveAndTake(people, friendships) {
+  connections = {};
+  friendships.forEach((element) => {
+    element[0] in connections
+      ? connections[element[0]].push(element[1])
+      : (connections[element[0]] = [element[1]]);
+    element[1] in connections
+      ? connections[element[1]].push(element[0])
+      : (connections[element[1]] = [element[0]]);
+  });
+  for (let i = 0; i < people.length; i++) {
+    if (people[i] < 0) {
+      people[i] = 0;
+      people[connections[]
+    }
+  }
+} */
+
+/* function locate(arr, value) {
+  if (arr.some((item) => item === value)) return true;
+  for (let i of arr) {
+    if (Array.isArray(i) && locate(i, value)) {
+      return true;
+    }
+  }
+  return false;
+}
+ */
+/* 
+function sumRange(num) {
+  if (num === 0) return 0;
+  return num + sumRange(num - 1);
+}
+
+console.log(sumRange(3));
+ */
+
+function power(base, exp) {
+  if (exp === 0) return 1;
+  return base * power(base, exp - 1);
+}
+
+console.log(factorial(5));
+
+function factorial(num) {
+  if (num === 1) return 1;
+  return num * factorial(num - 1);
+}
+
+var allAreLessThanSeven = all([1,2,18], function(num){
+	return num < 7;
+});
+
+console.log(allAreLessThanSeven); // false
+
+function all (arr, f) {
+  for (let i of arr) {
+    if (!f(i)) return false
+  }
+  return true;
+}
+
+function productOfArray (arr) {
+  
+}

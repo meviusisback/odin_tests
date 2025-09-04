@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img src="#" alt="Cats Rolling" id="cats-image" />
+    <button type="button" id="refresh">Refresh</button>
+    <form action="get">
+      <label for="query">Search: </label>
+      <input type="text" name="query" id="query" />
+      <button type="button" id="query-button">Search</button>
+    </form>
+    <img
+      src="#"
+      alt="Search Image"
+      srcset=""
+      id="search-image"
+      style="display: none"
+    />
+    <script defer>
+      const img = document.getElementById("cats-image");
+      const searchImg = document.getElementById("search-image");
+      const button = document.getElementById("refresh");
+      const query = document.getElementById("query");
+      button.addEventListener("click", loadGif);
+      const queryButton = document.getElementById("query-button");
+      queryButton.addEventListener("click", searchGif);
+      async function loadGif() {
+        const url =
+          "https://api.giphy.com/v1/gifs/translate?api_key=XX=cats";
+        try {
+          const response = await fetch(url, { mode: "cors" });
+          if (!response.ok) {
+            throw new Error("HTTP error!");
+          }
+          const data = await response.json();
+          img.src = data.data.images.original.url;
+        } catch (error) {
+          console.error("Fetch error: ", error.message);
+        }
+      }
+      async function searchGif() {
+        const searchTerm = query.value.trim();
+        if (!searchTerm) {
+          alert("Please enter a search term");
+          return;
+        }
+        const url = `https://api.giphy.com/v1/gifs/translate?api_key=XX&s=${encodeURIComponent(
+          searchTerm
+        )}`;
+        try {
+          const response = await fetch(url, { mode: "cors" });
+          if (!response.ok) {
+            throw new Error("HTTP error!");
+          }
+          const data = await response.json();
+          searchImg.src = data.data.images.original.url;
+          searchImg.style.display = "block";
+        } catch (error) {
+          console.error("Fetch error: ", error.message);
+          alert("Failed to fetch image: " + error.message);
+        }
+      }
+      loadGif();
+    </script>
+  </body>
+</html>
